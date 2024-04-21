@@ -34,8 +34,8 @@ function getDayFullName(num) {
     }
 }
 
-function getMonth(num){
-    switch(num){
+function getMonth(num) {
+    switch (num) {
         case "01": return "January";
         case "02": return "February";
         case "03": return "March";
@@ -59,21 +59,24 @@ async function fetchData(target) {
         const url = `${baseUrl}/current.json?key=${API_KEY}&q=${target}&aqi=yes`;
         const response = await fetch(url);
         const data = await response.json();
-        if (data.error) {
-            throw new Error(data)
+        if (response.status === 200) {
+            if (data.error) {
+                throw new Error(data)
+            }
+            if (celOrFar === "cel") {
+                tempElem.innerText = `${data.current.temp_c} °C`
+            } else if (celOrFar === "far") {
+                tempElem.innerText = `${data.current.temp_f} °F`
+            }
+            locationElem.innerText = data.location.name
+            dateTimeElem.innerText = formatDateTime(data.location.localtime)
+            weatherIcon.src = data.current.condition.icon
+            conditionElem.innerText = data.current.condition.text
+        } else if (response.status === 400) {
+            alert("Please enter valid city name!")
         }
-        console.log(data)
-        if (celOrFar === "cel") {
-            tempElem.innerText = `${data.current.temp_c} °C`
-        } else if (celOrFar === "far") {
-            tempElem.innerText = `${data.current.temp_f} °F`
-        }
-        locationElem.innerText = data.location.name
-        dateTimeElem.innerText = formatDateTime(data.location.localtime)
-        weatherIcon.src = data.current.condition.icon
-        conditionElem.innerText = data.current.condition.text
     } catch (err) {
-        console.error(err);
+        console.log(err)
     }
 }
 

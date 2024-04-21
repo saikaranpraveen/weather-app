@@ -9,8 +9,17 @@ const weatherIcon = document.querySelector(".weather_condition > p > img")
 const conditionElem = document.querySelector(".weather_condition > span")
 const celOrFarContainer = document.querySelector(".cel-or-far")
 const celBtn = celOrFarContainer.querySelector(".cel")
+const formElem = document.querySelector("form")
 
 let celOrFar = "cel"
+let firstTime = true
+
+celBtn.addEventListener("mouseover",()=>{
+    if (firstTime){
+        alert("Select the units (Celsius or Farenheit), enter the city name and then click on the \"Search\" button!")
+    }
+    firstTime = false;
+})
 
 celOrFarContainer.addEventListener("click", () => {
     if (celBtn.innerText === "Celsius") {
@@ -80,7 +89,7 @@ async function fetchData(target) {
     }
 }
 
-const formElem = document.querySelector("form")
+
 formElem.addEventListener("submit", (event) => {
     event.preventDefault();
     let inputTextElem = formElem.querySelector("input");

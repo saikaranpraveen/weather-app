@@ -14,8 +14,8 @@ const formElem = document.querySelector("form")
 let celOrFar = "cel"
 let firstTime = true
 
-celBtn.addEventListener("mouseover",()=>{
-    if (firstTime){
+celBtn.addEventListener("mouseover", () => {
+    if (firstTime) {
         alert("Select the units (Celsius or Farenheit), enter the city name and then click on the \"Search\" button!")
     }
     firstTime = false;

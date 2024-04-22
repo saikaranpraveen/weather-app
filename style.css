@@ -7,9 +7,10 @@
 }
 
 #searchbutton{
-  padding: 10%;
-  margin: 10%;
-  font-size: 90%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .container {
   width: 100%;
